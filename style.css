@@ -1,0 +1,102 @@
+/* 1. 기본 초기화 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Pretendard', sans-serif; }
+
+/* 2. 링크 기본값 */
+a { text-decoration: none; color: inherit; }
+
+/* 3. 헤더 전체 레이아웃 */
+header {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+/* 4. 상단 메뉴 구조 (flex와 gap 사용으로 간격 고정) */
+header nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 40px; /* 여기서 간격을 고정함 */
+}
+
+/* 5. 메뉴 글자 스타일 */
+header nav ul li {
+    position: relative;
+    white-space: nowrap;
+}
+
+header nav ul li a {
+    color: #222;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+/* 마우스 올렸을 때 효과 */
+header nav ul li a:hover,
+.dropdown:hover .dropbtn {
+    color: #a48654;
+}
+
+/* 6. 드롭다운 메뉴 스타일 */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* 중앙 정렬 보정 */
+    background-color: white;
+    min-width: 140px;
+    list-style: none;
+    padding: 10px 0;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    z-index: 10;
+    border: 1px solid #eee;
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    display: block;
+    margin: 0 !important;
+}
+
+.submenu li a {
+    padding: 10px 20px;
+    display: block;
+    font-size: 14px;
+    color: #333 !important;
+}
+
+.submenu li a:hover {
+    background-color: #f8f8f8;
+    color: #a48654 !important;
+}
+
+/* 7. 본문 컨텐츠 디자인 (필요시 사용) */
+.intro-container {
+    background: #ffffff;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    margin: 50px auto;
+    border: 1px solid #e0dcd5;
+    max-width: 1000px;
+}
+
+.hero-content h2 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; color: #222; }
+.hero-content p { font-size: 1.5rem; color: #666; }
