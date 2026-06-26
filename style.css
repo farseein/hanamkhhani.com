@@ -9,7 +9,7 @@ a { text-decoration: none; color: inherit; }
 header {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,19 +29,26 @@ header nav ul {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 40px; /* 여기서 간격을 고정함 */
+    gap: 60px; /* 여기서 간격을 고정함 */
 }
 
+/* 로고 이미지 크기 조절 */
+.logo-img {
+    height: 100px; /* 여기서 원하는 크기로 조절하세요 (예: 70px, 90px 등) */
+    width: auto;  /* 가로 세로 비율을 유지하면서 높이에 맞춰 자동 조절됩니다 */
+}
 /* 5. 메뉴 글자 스타일 */
 header nav ul li {
-    position: relative;
+    position: relative; /* 드롭다운 메뉴가 이 li를 기준으로 뜨게 만듭니다 (핵심!) */
     white-space: nowrap;
 }
 
 header nav ul li a {
     color: #222;
     font-weight: 600;
+    font-size: 1.2rem; /* 글자 크기 */
     transition: color 0.3s;
+    display: block; /* 메뉴 링크 영역을 확실히 하기 위해 추가 */
 }
 
 /* 마우스 올렸을 때 효과 */
@@ -53,16 +60,16 @@ header nav ul li a:hover,
 /* 6. 드롭다운 메뉴 스타일 */
 .submenu {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%); /* 중앙 정렬 보정 */
+    position: absolute; /* 부모인 li를 기준으로 위치함 */
+    top: 100%;          /* li 바로 아래 */
+    left: 50%;          /* li의 가로 중앙 */
+    transform: translateX(-50%);
     background-color: white;
     min-width: 140px;
     list-style: none;
     padding: 10px 0;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    z-index: 10;
+    z-index: 100;       /* 숫자를 좀 더 키워 다른 요소보다 위에 오게 함 */
     border: 1px solid #eee;
 }
 
@@ -72,14 +79,15 @@ header nav ul li a:hover,
 
 .submenu li {
     display: block;
-    margin: 0 !important;
+    position: static; /* 서브메뉴 안의 li는 다시 기본값으로 */
 }
 
 .submenu li a {
     padding: 10px 20px;
     display: block;
-    font-size: 14px;
+    font-size: 14px !important; /* 드롭다운 글자 크기 강제 적용 */
     color: #333 !important;
+    font-weight: 500 !important; /* 서브메뉴는 적당한 두께로 */
 }
 
 .submenu li a:hover {
