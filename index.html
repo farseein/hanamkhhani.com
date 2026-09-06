@@ -35,8 +35,16 @@
                     <li><a href="2_6.postpartum.html">산후관리 클리닉</a></li>
                 </ul>
             </li>
-            <li><a href="3.timetable.html">진료시간</a></li>
-            <li><a href="4.way.html">오시는 길</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">보약</a>
+                <ul class="submenu">
+                    <li><a href="3_1.Gong_jin_dan.html">공진단</a></li>
+                    <li><a href="3_2.Kyung_ok-go.html">경옥고</a></li>
+                    <li><a href="3_3.Chong_myung_tang.html">총명탕</a></li>
+                </ul>
+            </li>
+            <li><a href="8.timetable.html">진료시간</a></li>
+            <li><a href="9.way.html">오시는 길</a></li>
         </ul>
     </nav>
 </header>
@@ -187,58 +195,48 @@
     <p class="footer-copyright">&copy; 2026 하남풍산경희한의원. All Rights Reserved.</p>
 </footer>
 
-<!-- 팝업 -->
-<div id="popup" style="
+
+<!-- 팝업 1 -->
+<div id="popup1" style="
     display:none;
     position:fixed;
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
-    width:420px;
+    transform:translate(-105%, -50%);
+    width:500px;
     background:#fff;
     border-radius:20px;
     box-shadow:0 5px 30px rgba(0,0,0,0.3);
     z-index:9999;
     overflow:hidden;">
 
-<!-- 팝업 제목 -->
-<div style="
-    background:#003D7C;
-    color:white;
-    text-align:center;
-    padding:18px 20px;
-    font-size:1.6rem;
-    font-weight:bold;
-    letter-spacing:0.5px;">
-    🌸 산후조리 특별 패키지 🌸
-</div>
+    <div style="
+        background:#003D7C;
+        color:white;
+        text-align:center;
+        padding:18px 20px;
+        font-size:1.6rem;
+        font-weight:bold;
+        letter-spacing:0.5px;">
+        🌕 추석 진료 안내 🌕
+    </div>
 
-    <!-- 팝업 이미지 -->
-    <img src="1.index/pop_up/pop_up.png" alt="팝업" style="width:100%; display:block;">
+    <img src="1.index/pop_up/pop_up.png"
+         alt="추석 진료 안내"
+         style="width:100%; display:block;">
 
-    <!-- 하단 -->
-    <div style="padding:15px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="
+        padding:15px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;">
 
         <label style="font-size:15px; cursor:pointer;">
-            <input type="checkbox" id="todayClose">
+            <input type="checkbox" id="todayClose1">
             오늘 하루 보지 않기
         </label>
 
-            <!-- 바로가기 버튼 -->
-            <a href="2_6.postpartum.html"
-               style="
-               background:#C58B3C;
-               color:white;
-               text-decoration:none;
-               border-radius:8px;
-               padding:10px 18px;
-               font-size:15px;
-               cursor:pointer;">
-               바로가기
-            </a>
-
-            <!-- 닫기 버튼 -->
-        <button onclick="closePopup()"
+        <button onclick="closePopup1()"
             style="
             background:#003D7C;
             color:white;
@@ -251,15 +249,74 @@
         </button>
 
     </div>
-
 </div>
+
+
+<!-- 팝업 2 -->
+<div id="popup2" style="
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(5%, -50%);
+    width:500px;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 5px 30px rgba(0,0,0,0.3);
+    z-index:9999;
+    overflow:hidden;">
+
+    <div style="
+        background:#003D7C;
+        color:white;
+        text-align:center;
+        padding:18px 20px;
+        font-size:1.6rem;
+        font-weight:bold;
+        letter-spacing:0.5px;">
+        🌾 한의원 특별 안내 🌾
+    </div>
+
+    <img src="1.index/pop_up/pop_up2.jpg"
+         alt="특별 안내"
+         style="width:100%; display:block;">
+
+    <div style="
+        padding:15px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;">
+
+        <label style="font-size:15px; cursor:pointer;">
+            <input type="checkbox" id="todayClose2">
+            오늘 하루 보지 않기
+        </label>
+
+        <button onclick="closePopup2()"
+            style="
+            background:#003D7C;
+            color:white;
+            border:none;
+            border-radius:8px;
+            padding:10px 20px;
+            font-size:15px;
+            cursor:pointer;">
+            닫기
+        </button>
+
+    </div>
+</div>
+
 
 <script>
 
 // 쿠키 저장
-function setCookie(name, value, days){
+function setCookie(name, value, days) {
     var date = new Date();
-    date.setTime(date.getTime() + (days*24*60*60*1000));
+
+    date.setTime(
+        date.getTime() + (days * 24 * 60 * 60 * 1000)
+    );
 
     document.cookie =
         name + "=" + value +
@@ -267,32 +324,56 @@ function setCookie(name, value, days){
         "; path=/";
 }
 
+
 // 쿠키 읽기
-function getCookie(name){
+function getCookie(name) {
+
     var value = document.cookie.match(
         '(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'
     );
+
     return value ? value.pop() : "";
 }
 
-// 팝업 닫기
-function closePopup(){
 
-    if(document.getElementById("todayClose").checked){
-        setCookie("hidePopup","Y",1);
+// 팝업 1 닫기
+function closePopup1() {
+
+    if (
+        document.getElementById("todayClose1").checked
+    ) {
+        setCookie("hidePopup1", "Y", 1);
     }
 
-    document.getElementById("popup").style.display="none";
+    document.getElementById("popup1").style.display = "none";
 }
 
-// 페이지 열리면
-window.onload=function(){
 
-    if(getCookie("hidePopup")!="Y"){
-        document.getElementById("popup").style.display="block";
+// 팝업 2 닫기
+function closePopup2() {
+
+    if (
+        document.getElementById("todayClose2").checked
+    ) {
+        setCookie("hidePopup2", "Y", 1);
     }
 
+    document.getElementById("popup2").style.display = "none";
 }
+
+
+// 페이지 열릴 때 두 팝업 동시에 표시
+window.onload = function() {
+
+    if (getCookie("hidePopup1") != "Y") {
+        document.getElementById("popup1").style.display = "block";
+    }
+
+    if (getCookie("hidePopup2") != "Y") {
+        document.getElementById("popup2").style.display = "block";
+    }
+
+};
 
 </script>
 </body>
