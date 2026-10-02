@@ -196,14 +196,13 @@
     <p class="footer-copyright">&copy; 2026 하남풍산경희한의원. All Rights Reserved.</p>
 </footer>
 
-
-<!-- 팝업 1 -->
+<!-- 10월 진료 안내 팝업 -->
 <div id="popup1" style="
     display:none;
     position:fixed;
     top:50%;
     left:50%;
-    transform:translate(-105%, -50%);
+    transform:translate(-50%, -50%);
     width:500px;
     background:#fff;
     border-radius:20px;
@@ -211,6 +210,7 @@
     z-index:9999;
     overflow:hidden;">
 
+    <!-- 팝업 제목 -->
     <div style="
         background:#003D7C;
         color:white;
@@ -219,81 +219,31 @@
         font-size:1.6rem;
         font-weight:bold;
         letter-spacing:0.5px;">
-        🌕 추석 진료 🌕
+        10월 진료 안내
     </div>
 
-    <img src="1.index/pop_up/pop_up.png"
-         alt="추석 진료 안내"
+    <!-- 팝업 이미지 -->
+    <img src="1.index/pop_up/pop_up.jpg"
+         alt="10월 진료 안내"
          style="width:100%; display:block;">
 
+    <!-- 하단 버튼 -->
     <div style="
         padding:15px;
         display:flex;
         justify-content:space-between;
         align-items:center;">
 
-        <label style="font-size:15px; cursor:pointer;">
+        <label style="
+            font-size:15px;
+            cursor:pointer;">
+
             <input type="checkbox" id="todayClose1">
             오늘 하루 보지 않기
+
         </label>
 
         <button onclick="closePopup1()"
-            style="
-            background:#003D7C;
-            color:white;
-            border:none;
-            border-radius:8px;
-            padding:10px 20px;
-            font-size:15px;
-            cursor:pointer;">
-            닫기
-        </button>
-
-    </div>
-</div>
-
-
-<!-- 팝업 2 -->
-<div id="popup2" style="
-    display:none;
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(5%, -50%);
-    width:500px;
-    background:#fff;
-    border-radius:20px;
-    box-shadow:0 5px 30px rgba(0,0,0,0.3);
-    z-index:9999;
-    overflow:hidden;">
-
-    <div style="
-        background:#003D7C;
-        color:white;
-        text-align:center;
-        padding:18px 20px;
-        font-size:1.6rem;
-        font-weight:bold;
-        letter-spacing:0.5px;">
-        🌾 한의원 특별 안내 🌾
-    </div>
-
-    <img src="1.index/pop_up/pop_up2.jpg"
-         alt="특별 안내"
-         style="width:100%; display:block;">
-
-    <div style="
-        padding:15px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;">
-
-        <label style="font-size:15px; cursor:pointer;">
-            <input type="checkbox" id="todayClose2">
-            오늘 하루 보지 않기
-        </label>
-
-        <button onclick="closePopup2()"
             style="
             background:#003D7C;
             color:white;
@@ -313,6 +263,7 @@
 
 // 쿠키 저장
 function setCookie(name, value, days) {
+
     var date = new Date();
 
     date.setTime(
@@ -337,9 +288,11 @@ function getCookie(name) {
 }
 
 
-// 팝업 1 닫기
+// 팝업 닫기
 function closePopup1() {
 
+    // '오늘 하루 보지 않기' 체크 시
+    // 1일 동안 팝업 숨김
     if (
         document.getElementById("todayClose1").checked
     ) {
@@ -350,32 +303,16 @@ function closePopup1() {
 }
 
 
-// 팝업 2 닫기
-function closePopup2() {
-
-    if (
-        document.getElementById("todayClose2").checked
-    ) {
-        setCookie("hidePopup2", "Y", 1);
-    }
-
-    document.getElementById("popup2").style.display = "none";
-}
-
-
-// 페이지 열릴 때 두 팝업 동시에 표시
+// 페이지 열릴 때 팝업 표시
 window.onload = function() {
 
     if (getCookie("hidePopup1") != "Y") {
         document.getElementById("popup1").style.display = "block";
     }
 
-    if (getCookie("hidePopup2") != "Y") {
-        document.getElementById("popup2").style.display = "block";
-    }
-
 };
 
 </script>
+
 </body>
 </html>
