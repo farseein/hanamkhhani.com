@@ -196,14 +196,18 @@
     <p class="footer-copyright">&copy; 2026 하남풍산경희한의원. All Rights Reserved.</p>
 </footer>
 
-<!-- 10월 진료 안내 팝업 -->
+
+<!-- ========================= -->
+<!-- 팝업 1 : 10월 진료 안내 -->
+<!-- ========================= -->
 <div id="popup1" style="
     display:none;
     position:fixed;
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
+    transform:translate(-105%, -50%);
     width:500px;
+    max-width:45vw;
     background:#fff;
     border-radius:20px;
     box-shadow:0 5px 30px rgba(0,0,0,0.3);
@@ -219,12 +223,12 @@
         font-size:1.6rem;
         font-weight:bold;
         letter-spacing:0.5px;">
-        10월 진료 안내
+        수험생을 응원합니다!
     </div>
 
     <!-- 팝업 이미지 -->
-    <img src="1.index/pop_up/pop_up.jpg"
-         alt="10월 진료 안내"
+    <img src="1.index/pop_up/popup1.jpg"
+         alt="총명공진단 수"
          style="width:100%; display:block;">
 
     <!-- 하단 버튼 -->
@@ -234,13 +238,9 @@
         justify-content:space-between;
         align-items:center;">
 
-        <label style="
-            font-size:15px;
-            cursor:pointer;">
-
+        <label style="font-size:15px; cursor:pointer;">
             <input type="checkbox" id="todayClose1">
             오늘 하루 보지 않기
-
         </label>
 
         <button onclick="closePopup1()"
@@ -254,16 +254,74 @@
             cursor:pointer;">
             닫기
         </button>
+    </div>
+</div>
 
+
+<!-- ========================= -->
+<!-- 팝업 2 : 두 번째 안내 -->
+<!-- ========================= -->
+<div id="popup2" style="
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(5%, -50%);
+    width:500px;
+    max-width:45vw;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 5px 30px rgba(0,0,0,0.3);
+    z-index:9998;
+    overflow:hidden;">
+
+    <!-- 팝업 제목 -->
+    <div style="
+        background:#003D7C;
+        color:white;
+        text-align:center;
+        padding:18px 20px;
+        font-size:1.6rem;
+        font-weight:bold;
+        letter-spacing:0.5px;">
+        감기 조심하세요~!
+    </div>
+
+    <!-- 팝업 이미지 -->
+    <img src="1.index/pop_up/popup2.png"
+         alt="청인유쾌환"
+         style="width:100%; display:block;">
+
+    <!-- 하단 버튼 -->
+    <div style="
+        padding:15px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;">
+
+        <label style="font-size:15px; cursor:pointer;">
+            <input type="checkbox" id="todayClose2">
+            오늘 하루 보지 않기
+        </label>
+
+        <button onclick="closePopup2()"
+            style="
+            background:#003D7C;
+            color:white;
+            border:none;
+            border-radius:8px;
+            padding:10px 20px;
+            font-size:15px;
+            cursor:pointer;">
+            닫기
+        </button>
     </div>
 </div>
 
 
 <script>
-
 // 쿠키 저장
 function setCookie(name, value, days) {
-
     var date = new Date();
 
     date.setTime(
@@ -273,13 +331,12 @@ function setCookie(name, value, days) {
     document.cookie =
         name + "=" + value +
         "; expires=" + date.toUTCString() +
-        "; path=/";
+        "; path=/; SameSite=Lax";
 }
 
 
 // 쿠키 읽기
 function getCookie(name) {
-
     var value = document.cookie.match(
         '(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'
     );
@@ -288,14 +345,9 @@ function getCookie(name) {
 }
 
 
-// 팝업 닫기
+// 팝업 1 닫기
 function closePopup1() {
-
-    // '오늘 하루 보지 않기' 체크 시
-    // 1일 동안 팝업 숨김
-    if (
-        document.getElementById("todayClose1").checked
-    ) {
+    if (document.getElementById("todayClose1").checked) {
         setCookie("hidePopup1", "Y", 1);
     }
 
@@ -303,15 +355,32 @@ function closePopup1() {
 }
 
 
-// 페이지 열릴 때 팝업 표시
-window.onload = function() {
+// 팝업 2 닫기
+function closePopup2() {
+    if (document.getElementById("todayClose2").checked) {
+        setCookie("hidePopup2", "Y", 1);
+    }
 
+    document.getElementById("popup2").style.display = "none";
+}
+
+
+// 페이지 열릴 때 팝업 각각 표시
+function showPopups() {
     if (getCookie("hidePopup1") != "Y") {
         document.getElementById("popup1").style.display = "block";
     }
 
-};
+    if (getCookie("hidePopup2") != "Y") {
+        document.getElementById("popup2").style.display = "block";
+    }
+}
 
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", showPopups);
+} else {
+    showPopups();
+}
 </script>
 
 </body>
