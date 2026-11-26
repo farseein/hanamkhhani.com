@@ -197,17 +197,16 @@
 </footer>
 
 
-<!-- ========================= -->
-<!-- 팝업 1 : 10월 진료 안내 -->
-<!-- ========================= -->
+
+<!-- 팝업 1개 -->
 <div id="popup1" style="
     display:none;
     position:fixed;
     top:50%;
     left:50%;
-    transform:translate(-105%, -50%);
-    width:500px;
-    max-width:45vw;
+    transform:translate(-50%, -50%);
+    width:380px;
+    max-width:85vw;
     background:#fff;
     border-radius:20px;
     box-shadow:0 5px 30px rgba(0,0,0,0.3);
@@ -219,69 +218,8 @@
         background:#003D7C;
         color:white;
         text-align:center;
-        padding:18px 20px;
-        font-size:1.6rem;
-        font-weight:bold;
-        letter-spacing:0.5px;">
-        수험생을 응원합니다!
-    </div>
-
-    <!-- 팝업 이미지 -->
-    <img src="1.index/pop_up/popup1.jpg"
-         alt="총명공진단 수"
-         style="width:100%; display:block;">
-
-    <!-- 하단 버튼 -->
-    <div style="
-        padding:15px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;">
-
-        <label style="font-size:15px; cursor:pointer;">
-            <input type="checkbox" id="todayClose1">
-            오늘 하루 보지 않기
-        </label>
-
-        <button onclick="closePopup1()"
-            style="
-            background:#003D7C;
-            color:white;
-            border:none;
-            border-radius:8px;
-            padding:10px 20px;
-            font-size:15px;
-            cursor:pointer;">
-            닫기
-        </button>
-    </div>
-</div>
-
-
-<!-- ========================= -->
-<!-- 팝업 2 : 두 번째 안내 -->
-<!-- ========================= -->
-<div id="popup2" style="
-    display:none;
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(5%, -50%);
-    width:500px;
-    max-width:45vw;
-    background:#fff;
-    border-radius:20px;
-    box-shadow:0 5px 30px rgba(0,0,0,0.3);
-    z-index:9998;
-    overflow:hidden;">
-
-    <!-- 팝업 제목 -->
-    <div style="
-        background:#003D7C;
-        color:white;
-        text-align:center;
-        padding:18px 20px;
-        font-size:1.6rem;
+        padding:12px 15px;
+        font-size:1.4rem;
         font-weight:bold;
         letter-spacing:0.5px;">
         감기 조심하세요~!
@@ -294,17 +232,17 @@
 
     <!-- 하단 버튼 -->
     <div style="
-        padding:15px;
+        padding:10px 12px;
         display:flex;
         justify-content:space-between;
         align-items:center;">
 
         <label style="font-size:15px; cursor:pointer;">
-            <input type="checkbox" id="todayClose2">
+            <input type="checkbox" id="todayClose1">
             오늘 하루 보지 않기
         </label>
 
-        <button onclick="closePopup2()"
+        <button onclick="closePopup1()"
             style="
             background:#003D7C;
             color:white;
@@ -345,7 +283,7 @@ function getCookie(name) {
 }
 
 
-// 팝업 1 닫기
+// 팝업 닫기
 function closePopup1() {
     if (document.getElementById("todayClose1").checked) {
         setCookie("hidePopup1", "Y", 1);
@@ -355,24 +293,10 @@ function closePopup1() {
 }
 
 
-// 팝업 2 닫기
-function closePopup2() {
-    if (document.getElementById("todayClose2").checked) {
-        setCookie("hidePopup2", "Y", 1);
-    }
-
-    document.getElementById("popup2").style.display = "none";
-}
-
-
-// 페이지 열릴 때 팝업 각각 표시
+// 페이지 열릴 때 팝업 표시
 function showPopups() {
     if (getCookie("hidePopup1") != "Y") {
         document.getElementById("popup1").style.display = "block";
-    }
-
-    if (getCookie("hidePopup2") != "Y") {
-        document.getElementById("popup2").style.display = "block";
     }
 }
 
@@ -382,6 +306,5 @@ if (document.readyState === "loading") {
     showPopups();
 }
 </script>
-
 </body>
 </html>
